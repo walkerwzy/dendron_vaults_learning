@@ -1,0 +1,6 @@
+version: 1
+imports: []
+schemas:
+  - id: root2
+    children: []
+    parent: root2

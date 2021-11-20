@@ -1,0 +1,22 @@
+version: 1
+imports: []
+schemas:
+  - id: languages
+    title: language
+    parent: root
+    namespace: true
+    children: 
+      - ios
+      - python
+      - octave
+  - id: ios
+    title: iOS
+    namespace: true
+    children:
+      - swift
+  - id: swift
+    title: Swift & Swift UI
+  - id: python
+    title: Python
+  - id: octave
+    title: Octave

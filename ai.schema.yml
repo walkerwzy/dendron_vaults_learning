@@ -1,0 +1,42 @@
+version: 1
+imports: []
+schemas:
+  - id: ai
+    desc: AI
+    parent: root
+    namespace: true
+    children: 
+      - machine_learning
+      - deep_learning
+  - id: machine_learning
+    desc: machine learning
+    namespace: true
+    children: 
+      - Andrew_Ng
+      - ml_Basic
+  - id: ml_Basic
+    desc: basic of machine learning
+  - id: Andrew_Ng
+    desc: Andrew Ng
+  - id: deep_learning
+    desc: Deep Learning
+    namespace: true
+    children: 
+      - yolo
+      - rcnn
+      - cv
+      - network
+      - LiHongYi
+      - keras
+  - id: keras
+    desc: Lear Deep Learning in Python by Keras author
+  - id: LiHongYi
+    desc: Li Hong Yi
+  - id: yolo
+    desc: Yolo
+  - id: rcnn
+    desc: R-CNN
+  - id: cv
+    desc: CV
+  - id: network
+    desc: NetWork

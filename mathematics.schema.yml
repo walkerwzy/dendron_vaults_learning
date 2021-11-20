@@ -1,0 +1,14 @@
+version: 1
+imports: []
+schemas:
+  - id: mathematics
+    title: Mathematic
+    parent: root
+    namespace: true
+    children: [linear_algebra]
+  - id: linear_algebra
+    namespace: true
+    title: LinearAlgebra
+    children: [nullspace]
+  - id: nullspace
+    title: Ax=0 solutions
