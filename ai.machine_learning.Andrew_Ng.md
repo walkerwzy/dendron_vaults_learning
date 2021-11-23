@@ -2,7 +2,7 @@
 id: 061e96ef-5be4-4eb5-9cbe-d8a1c5ab9a4e
 title: Andrew_Ng
 desc: ''
-updated: 1621274000831
+updated: 1637397596317
 created: 1617555740665
 ---
 
@@ -46,7 +46,7 @@ we are trying to map input variables into discrete categories. 根据给定的�
 
 >e.g. from the last house price example, we making our output about whether the house "sells for more or less than the asking price.
 >e.g.  Given a patient with a tumor, we have to predict whether the tumor is malignant or benign. (图中展示了年龄和肿瘤大小，实际中可能有更多，甚至无限多的指标)
-![](/assets/images/2021-04-05-01-36-54.png)
+![](assets/images/2021-04-05-01-36-54.png)
 
 ## Unsupervised Learning
 
@@ -162,7 +162,7 @@ $s_i$: the `range` of $x_i$, aka: max-min, OR, the `standard deviation`
 
 `debuging` making sure gradient descent is working correctly. $J(\theta)$ should decrease after every iteration (for a sufficiently small $\alpha$).
 比如你发现曲线向上了，可能是选择了不恰当（过大）的learning rate（$\alpha$），而如果收敛得太慢了，那可能是选择了一个太小的learning rate。
-![](/assets/images/2021-04-08-14-32-52.png)
+![](assets/images/2021-04-08-14-32-52.png)
 
 ### Features and polynomial regression
 
@@ -225,7 +225,7 @@ $z = \theta^Tx$
 $g(z) = \frac{1}{1+e^{-z}}$
 
 `Sigmoid`就叫S型函数，因为它的图像是这样的：
-![](/assets/images/2021-04-27-01-20-49.png)
+![](assets/images/2021-04-27-01-20-49.png)
 The function g(z), shown here, **maps any real number** to the (0, 1) interval, making it useful for transforming an arbitrary-valued function into a function better suited for classification.
 
 正确理解`Sigmoid`函数，它表示的是在给定的（基于$\theta$参数的）x的值的情况下，输出为1的**概率**。
@@ -277,8 +277,8 @@ $Cost(h_\theta(x), y) =\begin{cases}
 \end{cases}$
 
 引入log是为了形成凸函数（convex），`-log(z)`与`-log(1-z)`的函数图形分别如下，取(0,1)部分：
-![](/assets/images/2021-04-27-14-08-06.png)
-![](/assets/images/2021-04-27-14-08-14.png)
+![](assets/images/2021-04-27-14-08-06.png)
+![](assets/images/2021-04-27-14-08-14.png)
 
 >注意：$z=h_\theta(x)$
 
@@ -323,7 +323,7 @@ Looks identical to `linear regression`
 > 这里为什么损失函数分明不是$h_\theta(x) - y$求导后仍然变成这个形式了呢？下面截图有求导过程，可见它只是**恰好**是这个形态，但是**千万不要**认为这才是推导依据，这就是数学之美吧。
 
 求导过程：
-![](/assets/images/2021-04-27-23-35-14.png)
+![](assets/images/2021-04-27-23-35-14.png)
 
 以后再自己试自己按行求导再求和，对于矩阵，还是用矩阵求导的链式法则：
 $z = f(Y),\ Y = AX+B \Rightarrow 
@@ -494,7 +494,7 @@ pass
 
 ## Model representation
 
-![](/assets/images/2021-05-04-01-08-16.png)
+![](assets/images/2021-05-04-01-08-16.png)
 神经元（`Neuron`）是大脑中的细胞。它的`input wires`是树突（`Dendrite`），`output wires`是轴突（`Axon`）。
 
 in neural network:  
@@ -567,7 +567,7 @@ see? exactly A&B
 我们则可以把前两者输出到隐层，只专注一个判断，在Output layer才组合1和2  
 同时，隐层我们只关心全真，和全假，这两种情况，因此只需要两个节点，最后，不断的训练中，总能试到如下图的参数，从而产生了正确的输出，这里模型就算训练完毕了。
 
-![](/assets/images/2021-05-05-00-08-40.png)
+![](assets/images/2021-05-05-00-08-40.png)
 
 结论1:
 > 我们得到了一个拆分特征，然后用新的特征去得到输出的例子。
@@ -689,7 +689,7 @@ $
 记住， $\delta_j^{(l)}$ is the `error` of cost for $a_j^{(l)}$，即 $\frac{\partial}{\partial z_j^{(l)}}cost(i)$
 
 how to calculate $\delta$:
-![](/assets/images/2021-05-13-02-18-48.png)
+![](assets/images/2021-05-13-02-18-48.png)
 
 ## Uniforming parameters
 
@@ -708,7 +708,7 @@ Theta3 = reshape(thetaVector(221:231),1,11)
 ```
 所以， octavea或matlab的切片是包头包尾的
 
-![](/assets/images/2021-05-13-02-41-35.png)
+![](assets/images/2021-05-13-02-41-35.png)
 
 ## Gradient checking
 

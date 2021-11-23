@@ -2,7 +2,7 @@
 id: f78aa886-676c-485e-82ad-e0d590e59bfc
 title: Swift
 desc: ''
-updated: 1606930709432
+updated: 1637397546367
 created: 1606930709432
 ---
 
@@ -262,7 +262,7 @@ init(items: [Item], @ViewBuilder content: @escaping (Item) -> ItemView) {...}
 
 SwiftUI的`View` protocol非常简单，conform 一个返回`some view`的`body`方法就行了，但是又为它写了无数`extension`，比如`foregroundColor`, `padding`, etc. 示意图：
 
-![](/assets/images/2021-10-28-03-38-30.png)
+![](assets/images/2021-10-28-03-38-30.png)
 
 ## Generics(泛型)
 
@@ -454,7 +454,7 @@ struct GeometryProxy {
 * 并且不包含safe area（如刘海）
 * 如果需要绘制到safe area里去: `ZStack{...}.edgesIgnoringSafeArea([.top])`
 
-![](/assets/images/2021-10-28-02-12-42.png)
+![](assets/images/2021-10-28-02-12-42.png)
 
 图中演示的是设置卡片字体的大小，希望尽可能地填充卡片，`geometry.size`能给出运行时数据，而无需硬编码。
 
@@ -494,7 +494,7 @@ Text(“👻 ”)
 - animation的参数就是一个struct： duration, delay, repeat, curve...
 
 对于不能动画的modifier，看一下这个实例（上为修改前，下为修改后）
-![](/assets/images/2021-10-28-17-54-47.png)
+![](assets/images/2021-10-28-17-54-47.png)
 
 1. 把font设为常量，把缩放变成一个geometric effect
 2. 同时也说明`.animation()`不止作用于它前面的
@@ -575,7 +575,7 @@ Because it’s communicating both ways, this animatableData is a `read-write` va
 
 **实例一**
 
-![](/assets/images/2021-10-29-00-41-47.png)
+![](assets/images/2021-10-29-00-41-47.png)
 
 * view modifier里面有一个变量`rotation`（ZStack, content, rotation3DEffect)
 * 那么外层在`withAnimation{}`的时候，我们是期望rotation的值能动起来的
@@ -600,7 +600,7 @@ Card()
 1. 所以解决方法当然可以“延迟”呈现这些卡片
 2. 课程里用了另一种方法，机制当然也是延迟，但不是那么地直白：
 
-![](/assets/images/2021-10-29-01-58-23.png)
+![](assets/images/2021-10-29-01-58-23.png)
 
 * 就是利用了`.onAppear`来阻断容器和卡片的连续生成，而改用容器呈现后，再逐个“添加”的方式，让每一张卡片都有一个单独出现的机会
 * 同时也必须利用`@State`, 让每添加一张卡片都会invalidate view一次
@@ -612,14 +612,14 @@ Card()
 
 **实例三**
 
-![](/assets/images/2021-10-29-02-38-33.png)
+![](assets/images/2021-10-29-02-38-33.png)
 
 * 想要有牌一张张发出去的效果，自然会想到添加延时
 * 实现成了同时做动画，只不过越到后面的牌，延时越长（动作越慢），而不是我们想象的先后触发
 
 为了让不同的牌发出去时有立体效果，还以index为依据设置了`zIndex`，最终效果：
 
-![card_deck](/assets/images/card_deck.gif)
+![card_deck](assets/images/card_deck.gif)
 
 # Color, UIColor & CGColor
 
@@ -1317,7 +1317,7 @@ if let url = try? container.decode(URL.self, forKey: .url) {
 
 也就是说，默认的decode只认`{}`
 
-![](/assets/images/2021-11-02-00-09-31.png)
+![](assets/images/2021-11-02-00-09-31.png)
 
 而前面我们知道了，如果是自己手写，它可以是任何值，它的意义仅仅是个标识，并不会取它的值。验证：
 ```swift
@@ -1398,7 +1398,7 @@ DocumentGroup(viewing: viewer:) { config in ... return aTopLevelView}  // 只读
 * 也会invalidate view
 * 数据类型有严格限制，最通用的是`RawRepresentable`
 
-![](/assets/images/2021-11-04-16-44-48.png)
+![](assets/images/2021-11-04-16-44-48.png)
 
 一个View里的`@State`改为`@SceneStorage(uniq_id)`后，app退出或crash了，仍然能找回原来的值。
 
@@ -1510,9 +1510,9 @@ func fileWrapper(snapshot: Snapshot, configuration: WriteConfiguration) throws -
 可以理解为怎么定义并注册（关联）自己的扩展名，就像photoshop关联.psd一样。
 
 1. 声明(Info tab)，设置`Exported/Imported Type Identifier`，所以表面上的扩展名，内里还对应了一个唯一的标识符，一般用反域名的格式
-![](/assets/images/2021-11-04-17-27-55.png)
+![](assets/images/2021-11-04-17-27-55.png)
 2. 声明拥有权，用的就是上一步标识符，而不是扩展名
-![](/assets/images/2021-11-04-17-28-25.png)
+![](assets/images/2021-11-04-17-28-25.png)
 3. 告知系统能在`Files` app里打开这种文档
     * info.plist > Supports Document Browser > YES
 4. 代码里添加枚举：
@@ -1561,7 +1561,7 @@ func undoablePerform(operation: String, with undoManager: UndoManager?, doit: ()
 
 # MVVM
 
-![](/assets/images/2021-10-27-12-24-18.png)
+![](assets/images/2021-10-27-12-24-18.png)
 
 * viewmodel要起到gete keeper的作用，它就要把model给private起来
     * 或者private (set), 这样保护了写，但是能读
@@ -1622,11 +1622,11 @@ UIKit并不是纯View的世界，大多数时候是跟ViewController一起出现
     * Image也可以作为Text的内容
 * `Circle + trim + stroke + rotation` 可以组合出一段任意角度的弧形
 * 一个`PreferenceKey`用来广播属性变化的例子：
-![](/assets/images/2021-11-08-00-57-05.png)
+![](assets/images/2021-11-08-00-57-05.png)
     * see more [https://swiftwithmajid.com/2020/01/15/the-magic-of-view-preferences-in-swiftui/](https://swiftwithmajid.com/2020/01/15/the-magic-of-view-preferences-in-swiftui/)
 
 看一个简化的实例：
-![](/assets/images/2021-10-28-00-41-01.png)
+![](assets/images/2021-10-28-00-41-01.png)
 
 可以看到，其实化简化可读性更强，用for循环，再在里面做逻辑，会把直白的初衷绕进去：
 * 返回唯一一个面朝上的卡片

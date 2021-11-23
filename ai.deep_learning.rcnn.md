@@ -2,15 +2,15 @@
 id: RbyCZaEhA96H9cjvU--Rk
 title: Rcnn
 desc: ''
-updated: 1628840514090
+updated: 1637397640777
 created: 1625596055846
 ---
 # R-CNN
 R-CNN是对滑窗的优化，很多什么都没有的区域进行卷积太浪费，先`selective-search`出可能有目标的区域
 
-![](/assets/images/2021-07-07-02-28-30.png)
+![](assets/images/2021-07-07-02-28-30.png)
 
-![](/assets/images/2021-08-13-15-30-07.png)
+![](assets/images/2021-08-13-15-30-07.png)
 
 RCNN训练过程
 * 先用ImageNet训练AlexNet
@@ -38,7 +38,7 @@ RCNN测试过程
 
 在此之前，所有的神经网络都是需要输入固定尺寸的图片，比如224*224（ImageNet）、32*32(LenNet)、96*96等。这样对于我们希望检测各种大小的图片的时候，需要经过crop，或者warp等一系列操作，这都在一定程度上导致图片信息的丢失和变形，限制了识别精确度。
 
-![](/assets/images/2021-08-13-15-40-10.png)
+![](assets/images/2021-08-13-15-40-10.png)
 
 SPP-Net在卷积层后同时进行三个池化，分别是把图片分成16分，4份和1份，每一份不管是做平均池化还是最大池化，我们知道，输出只有(16+4+1=)25个特征值了，对接后面的fc层就是固定的了，也就是说不需要固定输入图片的大小了。
 
@@ -58,7 +58,7 @@ SPP-Net在卷积层后同时进行三个池化，分别是把图片分成16分�
 * [来源1][1]
 * [来源2][2]
 
-![](/assets/images/2021-08-13-15-16-06.png)
+![](assets/images/2021-08-13-15-16-06.png)
 
 * step0：生成区域集R，具体参见论文《[Efficient * Graph-Based Image Segmentation][3]》
 * step1：计算区域集R里每个相邻区域的相似度S={s1,s2,…}

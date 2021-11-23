@@ -2,7 +2,7 @@
 id: 9vyvlNjQhL0ZiLxDj0Apo
 title: Keras
 desc: ''
-updated: 1632931330110
+updated: 1637397663157
 created: 1632414421733
 ---
 
@@ -409,7 +409,7 @@ Fine-tuning consists of unfreezing a few of the top layers of a frozen model bas
 
 前面的feature extraction方式，会把预训练的模型你选中的layers给freeze掉，即不计算梯度。这里之所以叫fine-tuning，意思就是会把最后几层(top-layers)给`unfreezing`掉，这样的好处是保留低级特征，重新训练高级特征，还保留了原来大型模型的结构，不需要自行构建。
 
-![](/assets/images/2021-09-25-13-39-58.png)
+![](assets/images/2021-09-25-13-39-58.png)
 
 > 但是： it’s only possible to fine-tune the top layers of the convolutional base once the classifier on `top has already been trained`. 预训练模型没有frezze住的话loss将会很大，所以变成了先train一个大体差不多的classifier，再联合起来train一遍高级特征和classifier:
 
@@ -444,7 +444,7 @@ plt.matshow(first_layer_activation[0, :, :, 4], cmap='viridis')
 
 ```
 
-![](/assets/images/2021-09-25-23-36-19.png)
+![](assets/images/2021-09-25-23-36-19.png)
 
 以上代码是利用了keras的Model特性，将所有layers的输出**摊平**（就是做了一个多头的模型），然后再顺便取了第4和第7个feature map画出来，可以看到，图一感兴趣的是`对角线`，图二提取的是`蓝色的亮点`。
 
@@ -491,7 +491,7 @@ for i in range(40):
 ```
 按上述代码的思路结构化输出并绘图：
 
-![](/assets/images/2021-09-26-00-06-44.png)
+![](assets/images/2021-09-26-00-06-44.png)
 
 从线条到纹理到物件（眼睛，毛皮，叶子）
 
@@ -537,10 +537,10 @@ for i in range(512):
 heatmap = np.mean(conv_layer_output_value, axis=-1)
 ```
 
-![](/assets/images/2021-09-26-01-53-59.png)
+![](assets/images/2021-09-26-01-53-59.png)
 
 叠加到原图上去（用cv2融合两张图片，即相同维度的数组以不同权重逐像素相加）：
-![](/assets/images/2021-09-26-01-58-32.png)
+![](assets/images/2021-09-26-01-58-32.png)
 
 
 # Deep learning for text and sequences
@@ -717,7 +717,7 @@ model.add(layers.Bidirectional(layers.LSTM(32)))
 
 但是它确实提取出了特征，是否可把位置关系等上下文的作业交给下游任务RNN做呢？
 
-![](/assets/images/2021-09-27-01-27-17.png)
+![](assets/images/2021-09-27-01-27-17.png)
 
 不但实现，而且堆叠两种网络，还可以把数据集做得更大（CNN是矩阵运算，还能用GPU加速）。
 

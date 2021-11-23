@@ -1,14 +1,17 @@
 version: 1
 imports: []
 schemas:
+# root
   - id: languages
     title: language
     parent: root
     namespace: true
     children: 
+      - ios_book
       - ios
       - python
       - octave
+# ios
   - id: ios
     title: iOS
     namespace: true
@@ -16,7 +19,40 @@ schemas:
       - swift
   - id: swift
     title: Swift & Swift UI
+# book: Programming iOS 14
+  - id: ios_book
+    title: Programming iOS 14
+    namespace: true
+    children:
+      - views
+      - interface
+      - frameworks
+      - useful
+  - id: views
+    title: Views
+    namespace: true
+    children:
+      - drawing
+      - layers
+      - animation
+      - touches
+  - id: drawing
+    title: Drawing
+  - id: layers
+    title: Layers
+  - id: animation
+    title: Animation
+  - id: touches
+    title: Touches
+  - id: interface
+    title: Interface
+  - id: frameworks
+    title: Frameworks
+  - id: useful
+    title: Something Useful
+# python
   - id: python
     title: Python
+# octave
   - id: octave
     title: Octave

@@ -2,7 +2,7 @@
 id: yYFOpl_aYlGY7Jxogfrzd
 title: Classic Network
 desc: ''
-updated: 1626807631909
+updated: 1637397674110
 created: 1625642306327
 ---
 
@@ -40,25 +40,25 @@ SGD，学习率0.01，batch size是128，momentum为0.9，weight decay为0.0005�
 Visualizing and Understanding Convolutional Networks
 
 先找到对某个卷积核激活最大化的原图块，再应用（反？）卷积，把它可视化出来，就能知道这个卷积核提取的是什么特征，有个[类似的项目](https://distill.pub/2017/feature-visualization/)
-![](/assets/images/2021-07-08-18-47-56.png)
+![](assets/images/2021-07-08-18-47-56.png)
 就一些讲解来看，确实不是用原图卷积得到特征图，而是把原图放到特征图的位置，应用反激活，反池化，反卷积，得到的结果。
 
 可以看到，截图显示的layer2提取的特征已经很明显了，基本上就是条纹。
 
-![](/assets/images/2021-07-08-18-57-29.png)
+![](assets/images/2021-07-08-18-57-29.png)
 
 到了第5层，可以看到能找出的原图已经不像前几层那么“几乎一样”了，说明它提取的特征已经很高级了，比如圈出来的几项，有的提取了草地，有的提取了眼睛，而不管图片是不是从像素的颜色分布是不是基本一致了。
 
-![](/assets/images/2021-07-08-19-00-05.png)
+![](assets/images/2021-07-08-19-00-05.png)
 
-![](/assets/images/2021-07-08-19-00-29.png)
+![](assets/images/2021-07-08-19-00-29.png)
 
 1. 横向表示不同的特征，纵向表示训练的轮数
 2. 高级特征显然要很多轮次才能收敛
 3. 突变能使fiter激活最大的原图变了
 
 对图片的处理（平移，缩放，旋转）影响特征的提取：
-![](/assets/images/2021-07-08-19-06-25.png)
+![](assets/images/2021-07-08-19-06-25.png)
 1. 特征越高级，影响越小
 2. 旋转的影响有周期性（第3列图）
 
@@ -67,7 +67,7 @@ Visualizing and Understanding Convolutional Networks
 # GoogLeNet
 
 22层，加上pooling有27层。9个Inception模块堆叠
-![](/assets/images/2021-07-09-17-56-37.png)
+![](assets/images/2021-07-09-17-56-37.png)
 
 几个平行卷积成相同大小但不同厚度的张量（5x5, 1x1, 3x3, 3x3pool)->(192, 128, 96, 256)，叠起来，叫一个Inception模块，传到下一层   
 同时考虑了用1x1的卷积来降维（降厚度），以及GAP（全局平均池化），每个通道只保留一个数字（平均值），这样变成了一维向量，个数就是通道数（很多Net里面用它来取代全连接层，或flatten层）
@@ -88,7 +88,7 @@ Visualizing and Understanding Convolutional Networks
 
 ZFNet和OverFeat都使用了更小的卷积核，更小的步长来提升AlexNet的表现，相比之下，VGG则是探索CNN的深度，通过固定其它参数，然后稳定地叠加深度。
 
-![](/assets/images/2021-07-21-02-56-06.png)
+![](assets/images/2021-07-21-02-56-06.png)
 
 # ResNet
 

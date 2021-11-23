@@ -2,24 +2,24 @@ version: 1
 imports: []
 schemas:
   - id: ai
-    desc: AI
+    title: AI
     parent: root
     namespace: true
     children: 
       - machine_learning
       - deep_learning
   - id: machine_learning
-    desc: machine learning
+    title: machine learning
     namespace: true
     children: 
       - Andrew_Ng
       - ml_Basic
   - id: ml_Basic
-    desc: basic of machine learning
+    title: basic of machine learning
   - id: Andrew_Ng
-    desc: Andrew Ng
+    title: Andrew Ng
   - id: deep_learning
-    desc: Deep Learning
+    title: Deep Learning
     namespace: true
     children: 
       - yolo
@@ -29,14 +29,14 @@ schemas:
       - LiHongYi
       - keras
   - id: keras
-    desc: Lear Deep Learning in Python by Keras author
+    title: Lear Deep Learning in Python by Keras author
   - id: LiHongYi
-    desc: Li Hong Yi
+    title: Li Hong Yi
   - id: yolo
-    desc: Yolo
+    title: Yolo
   - id: rcnn
-    desc: R-CNN
+    title: R-CNN
   - id: cv
-    desc: CV
+    title: CV
   - id: network
-    desc: NetWork
+    title: NetWork

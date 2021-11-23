@@ -2,7 +2,7 @@
 id: YZ0jEtt5guUkfvvnDDVB-
 title: Yolo
 desc: ''
-updated: 1625562326713
+updated: 1637397612983
 created: 1625556886822
 ---
 # Yolo
@@ -57,7 +57,7 @@ The appropriate bounding box is selected as the bounding box with highest IOU be
 
 x, y基于grid坐标， w, h基于anchor box
 
-![](/assets/images/2021-07-06-15-36-17.png)
+![](assets/images/2021-07-06-15-36-17.png)
 
 这是我见过最好懂的结构图，可以看出，只有13x13的是直接出结果的，  
 13x13上采样后与前面流程的26x26反向结合，再出另一个头
@@ -73,37 +73,37 @@ YoloV5 | darknet53, Focus,CSP | SPP, CSP, FPN+PAN | GIoU | V3
 
 ## V3
 
-![](/assets/images/2021-07-06-16-36-50.png)
+![](assets/images/2021-07-06-16-36-50.png)
 将图片划分成3x3的区域，每个区域生成一个8维的向量（假定3个类别），分别表示是否有目标，位置，和类别  
 这样你就可以构造如图的神经网络，输入是150\*150\*3，输出是3\*3\*8
 
-![](/assets/images/2021-07-06-16-40-58.png)
+![](assets/images/2021-07-06-16-40-58.png)
 如果有多个物体，那么就增加维度，即使两个物体的中心点可能在同一个cell内，  
 现在你的任务变成了构造一个输出是3 * 3 * 16的网络了
 
-![](/assets/images/2021-07-06-16-50-16.png)
+![](assets/images/2021-07-06-16-50-16.png)
 多尺度融合，通过不同的感受野，达到检测不同大小目标的目的
 
-![](/assets/images/2021-07-06-16-29-56.png)
+![](assets/images/2021-07-06-16-29-56.png)
 53层的由来
 
 如果仅仅用来目标分类，那这样就行了：
-![](/assets/images/2021-07-06-16-52-48.png)
+![](assets/images/2021-07-06-16-52-48.png)
 
 但还要目标定位的话，我们将其中的池化层，全连接层，softmax层全砍掉，接上上面说的三个尺度的特征图，就完成了既分类又定位的任务了：
-![](/assets/images/![](/assets/images/2021-07-06-16-54-26.png).png)
+![](assets/images/![](assets/images/2021-07-06-16-54-26.png).png)
 
 这里再复习一下FPN，前面说过了是上采样再反向与前面的特征图进行连接：
-![](/assets/images/2021-07-06-16-59-28.png)
+![](assets/images/2021-07-06-16-59-28.png)
 不管怎么画，意思应该都表达清楚了
 
 测试过程：
-![](/assets/images/2021-07-06-17-04-31.png)
+![](assets/images/2021-07-06-17-04-31.png)
 其中，打分为是否有目标和类别的乘积（所以是否有目标难道不是非0即1？），然后还要对同一目标进行一次NMS 
 
 ## V4
 
-![](/assets/images/2021-07-06-17-28-16.png)
+![](assets/images/2021-07-06-17-28-16.png)
 
 
 > 几个月后我再来看这个图, 就是三个维度来来回回捣腾，  
@@ -141,13 +141,13 @@ Dropblock的优点：
 
 ### SPP
 
-![](/assets/images/2021-07-06-18-58-17.png)
+![](assets/images/2021-07-06-18-58-17.png)
 分别用1x1, 5x5, 9x9, 13x13四种池化方式，拼接后由13x13x512变成了13x13x2048
 
 ### PAN
 
 加入了PAN结构
-![](/assets/images/2021-07-06-18-36-09.png)
+![](assets/images/2021-07-06-18-36-09.png)
 上面反复说了FPN是怎么回事，即在52，26，的位置分别等着，13完了后，再上采样回26，连接输出，再上采样到52，连接输出   
 而PAN结构反了过来：
 
@@ -160,13 +160,13 @@ Dropblock的优点：
 7. 继续下采样成13，与新的等着的13拼接成13的head
 
 换个图：
-![](/assets/images/2021-07-06-18-42-28.png)
+![](assets/images/2021-07-06-18-42-28.png)
 意思是一样的
 
 ### loss
 
 损失函数的进化：
-![](/assets/images/2021-07-06-18-50-38.png)
+![](assets/images/2021-07-06-18-50-38.png)
 * GIoU考虑了两个框不相交
 * DIoU考虑了一个框完全在另一个里面
 * CIoU考虑了完全在另一个框里面，中心点也相同，但框形状不同
@@ -175,7 +175,7 @@ V4采用的是DIoU_nms，因为CIoU需要真值参与，但预测和推理过程
 
 ## V5
 
-![](/assets/images/2021-07-07-00-04-00.png)
+![](assets/images/2021-07-07-00-04-00.png)
 
 ### auto anchor
 
@@ -197,7 +197,7 @@ parser.add.argument('--noautoanchor', action='store true', help='disable autoanc
 
 ### Focus
 
-![](/assets/images/2021-07-07-00-03-23.png)
+![](assets/images/2021-07-07-00-03-23.png)
 隔一个取一个，必然导致边长减半，层数X4（横向2份，纵向2份）  
 608 * 608 * 3 -> 304 * 304 * 12
 
@@ -230,7 +230,7 @@ width_multiple: 1.25  # layer channel multiple
 ### CSP
 
 比v4多了一个csp，一个用在backbone（带残差），共3个，一个用在neck（不带残差）共4个
-![](/assets/images/2021-07-07-00-23-33.png)
+![](assets/images/2021-07-07-00-23-33.png)
 
 CSP1_1表示是backbone中的CSP，并且只带一个残差块，在不同的网络大小中，CSP1_X中的X取值不同
 
@@ -238,7 +238,7 @@ CSP2_1则代表neck中的CSP块中CBL块的个数，计算方法相同：
 
 * gd：来自depth_multiple
 * n: 来自
-![](/assets/images/2021-07-07-00-26-28.png)
+![](assets/images/2021-07-07-00-26-28.png)
 红框部分的第2个参数，如3，9，9，并且：  
 `n = max(round(n * gd), 1) if n > 1 else n  # depth gain`
 * 计算：
@@ -258,7 +258,7 @@ n = nax(round(9 * 0.33), 1) = 3
 #### 宽度
 
 宽度决定的是backbone中卷积核的数量（channel)
-![](/assets/images/2021-07-07-00-35-46.png)
+![](assets/images/2021-07-07-00-35-46.png)
 
 所以经过多少个卷积核，就产生多少输出(output channel)  
 5s中`Focus`有32个卷积核，那么输出应该为：
@@ -274,7 +274,7 @@ def make_divisible(x, divisor):
     return math.ceil(x / divisor) * divisor
 ```
 `c2`在`yaml`配置文件中的从这里读：
-![](/assets/images/2021-07-07-00-46-14.png)
+![](assets/images/2021-07-07-00-46-14.png)
 这里给的是5l的例子
 
 计算：
