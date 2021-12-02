@@ -1,0 +1,21 @@
+version: 1
+imports: []
+schemas:
+  - id: ds
+    title: Data Structure
+    parent: root
+    namespace: true
+    children: 
+      - tree
+      - array
+  - id: tree
+    title: Binary Search Tree
+    parent: ds
+    namespace: true
+    children:
+      - redblack
+  - id: redblack
+    title: Red-Black Tree
+    parent: tree
+  - id: array
+    title: Array
