@@ -8,6 +8,7 @@ schemas:
     namespace: true
     children: 
       - ios_book
+      - effective_objc
       - ios
       - python
       - octave
@@ -17,8 +18,13 @@ schemas:
     namespace: true
     children:
       - swift
+      - interview
   - id: swift
     title: Swift & Swift UI
+  - id: interview
+    title: 面试相关,各种原理
+  - id: effective_objc
+    title: Effective Obejctive-C 2.0
 # book: Programming iOS 14
   - id: ios_book
     title: Programming iOS 14
