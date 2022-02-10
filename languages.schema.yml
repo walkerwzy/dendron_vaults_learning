@@ -19,12 +19,15 @@ schemas:
     children:
       - swift
       - interview
+      - ios_skill
   - id: swift
     title: Swift & Swift UI
   - id: interview
     title: 面试相关,各种原理
   - id: effective_objc
     title: Effective Obejctive-C 2.0
+  - id: ios_skill
+    title: ios skills
 # book: Programming iOS 14
   - id: ios_book
     title: Programming iOS 14
