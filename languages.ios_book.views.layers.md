@@ -2,7 +2,7 @@
 id: h3QCYufccKaL1fMgBVXvV
 title: Layers
 desc: ''
-updated: 1644746720175
+updated: 1644771704589
 created: 1637863479931
 ---
 
@@ -190,3 +190,12 @@ someLayer.transform = CATransform3DMakeRotation(.pi, 0, 1, 0)
 ```
 一般而言，在Z轴没有分量的平面图，那就只剩旋转的效果了（没有翻转)
 ![](assets/images/2022-02-13-17-28-45.png)
+
+这是把anchorPoint设在了圆心，如果设在(0,0):
+![](assets/images/2022-02-14-00-19-27.png)
+
+* layer不是为了3D建模而诞生的（考虑`Metal`），它是2D对象，为`speed`和`simplicity`而设计
+
+**depth**
+
+现实世界`z-component`的加入会近大远小，layer绘制没有表现出这种距离，而是压平到一个面：`orthographic projection`，但是使用了一些技巧来制造这种视觉效果。
