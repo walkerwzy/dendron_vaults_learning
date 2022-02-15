@@ -2,7 +2,7 @@
 id: h3QCYufccKaL1fMgBVXvV
 title: Layers
 desc: ''
-updated: 1644771704589
+updated: 1644945168506
 created: 1637863479931
 ---
 
@@ -199,3 +199,66 @@ someLayer.transform = CATransform3DMakeRotation(.pi, 0, 1, 0)
 **depth**
 
 现实世界`z-component`的加入会近大远小，layer绘制没有表现出这种距离，而是压平到一个面：`orthographic projection`，但是使用了一些技巧来制造这种视觉效果。
+
+[waiting for demo]
+
+## Futher Layer Features
+
+**shadow**
+
+
+**Borders and Rounded Corners**
+
+
+**Masks**
+
+
+## Layer Efficiency
+
+由于移动设备算力的影响，大量叠加的半透明图层的渲染是一件很消耗且低效的事，特别是动画的时候。
+
+debug：
+1. Core Animation template in **Instruments**
+2. New in Xcode 12, animation “hitches” can be measured with `XCTMetrics` during performance testing. 
+3. the Simulator’s `Debug` menu lets you summon `colored overlays` that provide clues as to possible sources of **inefficient drawing** 
+    * 真机：Debug → View Debugging → Rendering
+4. New in Xcode 12, the view debugger (“View Debugger” on page 75) can display layers — choose Editor → Show Layers — and can offer suggestions for improving layer rendering efficiency.
+
+tips:
+1. **opaque drawing** is most efficient.
+    * Nonopaque drawing is what the Simulator marks when you check Debug → Color Blended Layers.
+2. “freezing” the entirety of the layer’s drawing as a **bitmap**. 
+    * 直接绘制效率确实比缓存效率高
+    * 但是过深过复杂的继承树，没必要每次都实时计算渲染
+    * by `shouldRasterize = true` and `rasterizationScale = UIScreen.main.scale` 
+3. `drawsAsynchronously = true`
+
+## Layers and Key-Value Coding
+
+```objective-c
+ layer.mask = mask
+// or:
+layer.setValue(mask, forKey: "mask")
+
+self.rotationLayer.transform = CATransform3DMakeRotation(.pi/4.0, 0, 1, 0)
+// or:
+self.rotationLayer.setValue(.pi/4.0, forKeyPath:"transform.rotation.y")
+```
+
+* 不代表`CATransform3D`有`rotation`属性
+    * 它没有任何属性
+    * 它甚至不是一个对象
+    * `self.rotationLayer.transform.rotation.y = //... no, sorry`
+
+* some transform key:
+• "rotation.x","rotation.y","rotation.z"
+• "rotation" (same as "rotation.z")
+• "scale.x","scale.y","scale.z"
+• "translation.x","translation.y","translation.z" • "translation" (two-dimensional, a CGSize)
+
+* The` Quartz Core` framework also injects key–value coding compliance into `CGPoint`, `CGSize`, and `CGRect`, allowing you to use keys and key paths matching their `struct component names`. 
+
+>  see “Core Animation Extensions to Key-Value Coding” in Apple’s Core Animation Programming Guide 
+
+* you can treat a `CALayer` as a kind of `dictionary`, and get and set the value for any key.
+    * view有tag，layer就有任意key
